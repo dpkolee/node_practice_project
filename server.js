@@ -1,7 +1,38 @@
+const {logger} = require("./middleware/logEvents")
 const path = require("path");
 const express = require("express");
+const cors = require("cors")
 const app = express();
 const port = process.env.PORT || 3000;
+
+// custom middleware logger
+app.use(logger)
+
+// Cors Origin Resourse Sharing
+const whiteList = ["https://google.com", "http://127.0.0.1:5500", "http://localhost:3500"]
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if(whiteList.indexOf(origin) !== -1) {
+      callback(null, true)
+    }else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  optionsSuccessStatus: 200
+}
+app.cors(corsOptions)
+
+// built-in middleware to handle uelencoaded data
+// in other words, formdata:
+// content-type: application/x-www.form-urlencoaded
+app.use(express.urlencoded({extended: false}))
+
+// built-in middleware for json
+app.use(express.json())
+
+// serve static files
+app.use(express.static(path.join(__dirname, "/public")))
 
 const one = (req, res, next) => {
   console.log("one");
