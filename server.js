@@ -3,7 +3,7 @@ const errorHandler = require("./middleware/errorHandler");
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-const router = require("./routes/subdir");
+const corsOptions = require("./config/corsOptions");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -11,18 +11,6 @@ const port = process.env.PORT || 3000;
 app.use(logger);
 
 // Cors Origin Resourse Sharing
-const whitelist = ["https://www.google.com", "http://localhost:3000"];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  optionsSuccessStatus: 200,
-};
 app.use(cors(corsOptions));
 
 // built-in middleware to handle uelencoaded data
@@ -35,26 +23,9 @@ app.use(express.json());
 
 // serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
-app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));
 app.use("/employees", require("./routes/api/employees"));
-app.use("/subdir", router);
-
-// const one = (req, res, next) => {
-//   console.log("one");
-//   next();
-// };
-// const two = (req, res, next) => {
-//   console.log("two");
-//   next();
-// };
-// const three = (req, res) => {
-//   console.log("three");
-//   res.send("Finished");
-// };
-
-// app.get("/chain(.html)?", [one, two, three]);
 
 app.all("*", (req, res) => {
   res.status(404);
