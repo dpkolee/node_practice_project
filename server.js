@@ -4,6 +4,8 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
+const verifyJWT = require("./middleware/verifyJWT");
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,13 +23,22 @@ app.use(express.urlencoded({ extended: false }));
 // built-in middleware for json
 app.use(express.json());
 
+//middleware for cookies
+app.use(cookieParser());
+
 // serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));
-app.use("/employees", require("./routes/api/employees"));
 app.use("/register", require("./routes/api/register"));
 app.use("/auth", require("./routes/api/auth"));
+app.use("/refresh", require("./routes/api/refresh"));
+app.use("/logout", require("./routes/api/logout"));
+
+//Protected Routes
+//Any routes that need to be authenticated have to be placed after verify JWT middleware since js works on waterfall model
+app.use(verifyJWT);
+app.use("/employees", require("./routes/api/employees"));
 
 app.all("*", (req, res) => {
   res.status(404);
