@@ -19,9 +19,7 @@ const handleNewUser = async (req, res) => {
   //Check for duplicate username in database
   const duplicateUser = userDB.users.find((dbUser) => dbUser.username === user);
   if (duplicateUser)
-    return res
-      .status(409)
-      .json({ message: "User has been already created" });
+    return res.status(409).json({ message: "User has been already created" });
 
   try {
     //encrypt the password
@@ -31,6 +29,9 @@ const handleNewUser = async (req, res) => {
     const newUser = {
       username: user,
       password: hashedPwd,
+      roles: {
+        User: 2001,
+      },
     };
     userDB.setUsers([...userDB.users, newUser]);
     await fsPromises.writeFile(
