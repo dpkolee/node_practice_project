@@ -22,7 +22,12 @@ const handleLogout = async (req, res) => {
   );
 
   if (!foundUser) {
-    res.clearCookie("jwt", { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
     return res.sendStatus(204);
   }
 
@@ -39,8 +44,13 @@ const handleLogout = async (req, res) => {
     JSON.stringify(userDB.users)
   );
 
-  res.clearCookie("jwt", { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-  res.sendStatus(204)
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+  res.sendStatus(204);
 };
 
 module.exports = { handleLogout };

@@ -448,3 +448,7 @@
 20230824	17:33:36	9b7e977b-93fc-47ee-bf3d-a0d7eaebdea1	GET	undefined	/refresh
 20230824	17:33:36	cc2d0992-261f-4e62-8159-fde21054c39c	GET	undefined	/refresh
 20230824	17:33:37	e6b9d03f-798c-453b-9bf0-15f9a3af5a3e	GET	undefined	/refresh
+20230825	12:44:00	84ce1825-36be-4a58-879d-5ea3685a44dd	GET	undefined	/
+20230825	12:44:00	7166d09c-118a-4c33-9878-5de9242b9ff0	GET	undefined	/css/style.css
+20230825	12:44:00	5fee6f72-534b-4f5f-b0d4-061f492479ff	GET	undefined	/favicon.ico
+20230825	12:44:04	d873f213-3918-4081-a8e3-fcf19c500c4a	GET	undefined	/css/style.css
