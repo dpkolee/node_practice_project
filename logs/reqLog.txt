@@ -517,3 +517,8 @@
 20230826	15:33:27	557c6dae-c148-4f61-a208-fd61cc1d9046	GET	undefined	/
 20230826	15:33:27	1ba649a7-b889-42a8-866b-a3fb0c8df194	GET	undefined	/css/style.css
 20230826	15:33:27	cddea42a-8f14-458e-8e10-57087d06c2d9	GET	undefined	/favicon.ico
+20230826	18:37:16	d3f727f2-9a1c-450b-aa62-69fcbb6e909e	POST	undefined	/register
+20230826	18:38:40	14e9590c-db84-4b2d-bb5d-692c1dcda6b3	POST	undefined	/register
+20230826	18:43:38	b782fd38-ac1b-4d16-81bf-d33a58447195	POST	undefined	/register
+20230826	19:52:38	24c37859-daa1-44a1-908b-40c4cb74f758	POST	undefined	/register
+20230826	19:53:06	2fbe9a3e-fbe6-4e8e-bd40-58e8b00ac986	POST	undefined	/register
